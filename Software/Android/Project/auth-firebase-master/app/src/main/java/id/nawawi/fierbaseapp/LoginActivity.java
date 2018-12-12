@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private String TAG = "LoginActivity";
+    public static Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void login(String email, String password){
+    private void login(final String email, final String password){
         final Intent intentM = new Intent(this, MainActivity.class);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            bundle = intentM.getExtras();
                             startActivity(intentM);
                             finish();
                         } else {
