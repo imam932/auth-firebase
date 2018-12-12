@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">AvaGenApps</string>
-    <string name="Login">Login</string>
-    <string name="Register">Register</string>
-    <string name="title_activity_create">CreateActivity</string>
-    <string name="error">error</string>
-    <string name="saved_message">Image Saved</string>
-</resources>
