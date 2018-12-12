@@ -37,11 +37,6 @@ import static android.provider.CalendarContract.CalendarCache.URI;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Toast";
-    private static final int REQUEST_STORAGE = 1;
-    private static final String FILE_PROVIDER_AUTHORITY = "id.nawawi.fileprovider";
-    private String tempPath;
-    private Bitmap resultBmp;
-    private static final int REQUEST_CAMERA = 1;
     private File mFileURI;
     FrameLayout fl;
 
