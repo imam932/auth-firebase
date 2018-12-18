@@ -1,5 +1,6 @@
 package id.nawawi.fierbaseapp;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,7 +9,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +42,9 @@ import static android.provider.CalendarContract.CalendarCache.URI;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Toast";
+    private static final int REQUEST_STORAGE = 1;
+    private static final int REQUEST_CAMERA = 2;
+    private static final String FILE_PROVIDER_AUTHORITY = "id.nawawi.fileprovider";
     private File mFileURI;
     FrameLayout fl;
 
@@ -86,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int item) {
                         switch (item) {
                             case 0:
-                                captureImage();
+                                askPermission(Manifest.permission.CAMERA,REQUEST_CAMERA);
+
                                 break;
                             case 1:
 
@@ -94,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     }
+
                 });
                 builder.create().show();
             }
@@ -105,11 +115,57 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void askPermission (String Permisson, Integer reqCode) {
+        // Check for the external storage permission
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Permisson)
+                != PackageManager.PERMISSION_GRANTED) {
+            // If you do not have permission, request it
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Permisson},
+                    reqCode);
+        }
+        else if (reqCode == REQUEST_CAMERA) {
+            askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,REQUEST_STORAGE);
+        }
+        else {
+            captureImage();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        // Called when you request permission to read and write to external storage
+        switch (requestCode) {
+            case REQUEST_STORAGE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    captureImage();
+                    Toast.makeText(this, "Sudah ada permission ke write external storage", Toast.LENGTH_SHORT).show();
+                } else {
+                    // If you do not get permission, show a Toast
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+            case REQUEST_CAMERA: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,REQUEST_STORAGE);
+                    Toast.makeText(this, "Sudah ada permission ke kamera", Toast.LENGTH_SHORT).show();
+                } else {
+                    // If you do not get permission, show a Toast
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
+    }
+
     private void captureImage() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             mFileURI = getMediaFileName();
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, URI.fromFile(mFileURI));
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getApplicationContext(),FILE_PROVIDER_AUTHORITY,mFileURI));
             startActivityForResult(takePictureIntent, 100);
         }
     }
@@ -118,11 +174,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            Glide.with(getApplicationContext()).load(new File(mFileURI.getPath())).asBitmap().into(new SimpleTarget<Bitmap>(fl.getWidth(),fl.getHeight()) {
+            Glide.with(MainActivity.this).load(new File(mFileURI.getPath())).asBitmap().into(new SimpleTarget<Bitmap>(fl.getWidth(),fl.getHeight()) {
+
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    Drawable drawable = new BitmapDrawable(getApplicationContext().getResources());
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    Drawable drawable = new BitmapDrawable(resource);
+                    if (Build.VERSION.SDK_INT >= 16) {
                         fl.setBackground(drawable);
                     }
                 }
