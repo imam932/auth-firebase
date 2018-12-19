@@ -174,12 +174,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            Glide.with(MainActivity.this).load(new File(mFileURI.getPath())).asBitmap().into(new SimpleTarget<Bitmap>(fl.getWidth(),fl.getHeight()) {
-
+            Glide.with(MainActivity.this).
+                    load(new File(mFileURI.getPath())).
+                    asBitmap().
+                    into(new SimpleTarget<Bitmap>(fl.getWidth(),fl.getHeight()
+                    ) {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     Drawable drawable = new BitmapDrawable(resource);
                     if (Build.VERSION.SDK_INT >= 16) {
+                        fl.setMinimumHeight(drawable.getMinimumHeight());
                         fl.setBackground(drawable);
                     }
                 }
