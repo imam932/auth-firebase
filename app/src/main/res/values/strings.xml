@@ -5,4 +5,6 @@
     <string name="title_activity_create">CreateActivity</string>
     <string name="error">error</string>
     <string name="saved_message">Image Saved</string>
+    <string name="other_signin">Other Sign in</string>
+    <string name="Logout">Sign Out Google</string>
 </resources>
