@@ -9,14 +9,35 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="@color/noColor">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/llayout"
+        android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/flayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/noColor">
+        <FrameLayout
+            android:id="@+id/flayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/noColor"
+            android:minHeight="10dp">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@android:drawable/screen_background_light_transparent"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"/>
+        </FrameLayout>
+
+        <GridLayout
+            android:id="@+id/glayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:minHeight="10dp"></GridLayout>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"

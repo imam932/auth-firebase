@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,6 +21,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -47,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String FILE_PROVIDER_AUTHORITY = "id.nawawi.fileprovider";
     private File mFileURI;
     FrameLayout fl;
+    GridLayout gl;
+    RelativeLayout rl;
+    LinearLayout ll;
+    ImageView iv;
 
 
     @Override
@@ -60,9 +68,15 @@ public class MainActivity extends AppCompatActivity {
         //ButterKnife.bind(this);
         //memberi isi value pada database dengan nama field message
         myRef.setValue("Welcome");
-        RelativeLayout rl = ((RelativeLayout) findViewById(R.id.rlayout));
-        fl = ((FrameLayout) findViewById(R.id.flayout));
-
+        rl = (RelativeLayout) findViewById(R.id.rlayout);
+        ll = (LinearLayout) findViewById(R.id.llayout);
+        fl = (FrameLayout) findViewById(R.id.flayout);
+        gl = (GridLayout) findViewById(R.id.glayout);
+        // fl.getLayoutParams().height = rl.getWidth();
+        //fl.getLayoutParams().width = fl.getHeight();
+        gl.getLayoutParams().height = (rl.getHeight()-fl.getHeight());
+        gl.getLayoutParams().width = fl.getWidth();
+        iv = (ImageView)findViewById(R.id.imageView2);
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-                Toast.makeText(MainActivity.this, "Welcome ",
-                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -177,15 +188,16 @@ public class MainActivity extends AppCompatActivity {
             Glide.with(MainActivity.this).
                     load(new File(mFileURI.getPath())).
                     asBitmap().
-                    into(new SimpleTarget<Bitmap>(fl.getWidth(),fl.getHeight()
+                    into(new SimpleTarget<Bitmap>(iv.getWidth(),iv.getWidth()
                     ) {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     Drawable drawable = new BitmapDrawable(resource);
-                    if (Build.VERSION.SDK_INT >= 16) {
-                        fl.setMinimumHeight(drawable.getMinimumHeight());
-                        fl.setBackground(drawable);
-                    }
+//                    if (Build.VERSION.SDK_INT >= 16) {
+//                        fl.setMinimumHeight(drawable.getMinimumHeight());
+//                        fl.setBackground(drawable);
+//                    }
+                    iv.setImageBitmap(resource);
                 }
             });
         }
@@ -216,6 +228,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // no camera on this device
             return false;
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+            gl.getLayoutParams().width = (rl.getWidth()-fl.getWidth());
+            Toast.makeText(this, "LANDSCAPE", Toast.LENGTH_SHORT).show();
+        }else{
+            ll.setOrientation(LinearLayout.VERTICAL);
+            gl.getLayoutParams().height = (rl.getHeight()-fl.getHeight());
+            Toast.makeText(this, "POTRAIT", Toast.LENGTH_SHORT).show();
         }
     }
 }
