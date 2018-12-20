@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout rl;
     LinearLayout ll;
     ImageView iv;
+    Drawable dd;
 
 
     @Override
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         fl = (FrameLayout) findViewById(R.id.flayout);
         gl = (GridLayout) findViewById(R.id.glayout);
         iv = (ImageView)findViewById(R.id.imageView2);
+        dd = iv.getDrawable();
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -103,10 +105,9 @@ public class MainActivity extends AppCompatActivity {
                         switch (item) {
                             case 0:
                                 askPermission(Manifest.permission.CAMERA,REQUEST_CAMERA);
-
                                 break;
                             case 1:
-
+                                iv.setImageDrawable(dd);
                                 break;
 
                         }
@@ -229,11 +230,13 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
             ll.setOrientation(LinearLayout.HORIZONTAL);
-            //gl.getLayoutParams().width = (rl.getWidth()-fl.getWidth());
+            fl.getLayoutParams().width=fl.getLayoutParams().height;
+            fl.getLayoutParams().height=rl.getLayoutParams().width;
             Toast.makeText(this, "LANDSCAPE", Toast.LENGTH_SHORT).show();
         }else{
             ll.setOrientation(LinearLayout.VERTICAL);
-            //gl.getLayoutParams().height = (rl.getHeight()-fl.getHeight());
+            fl.getLayoutParams().height=fl.getLayoutParams().width;
+            fl.getLayoutParams().width=rl.getLayoutParams().width;
             Toast.makeText(this, "POTRAIT", Toast.LENGTH_SHORT).show();
         }
     }
