@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -36,6 +37,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import android.provider.MediaStore;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA = 2;
     private static final String FILE_PROVIDER_AUTHORITY = "id.nawawi.fileprovider";
     private File mFileURI;
+    private AssetManager assetManager;
+    private InputStream inputStream;
     FrameLayout fl;
     GridLayout gl;
     RelativeLayout rl;
@@ -66,6 +71,36 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = ((FloatingActionButton) findViewById(R.id.floatingActionButton));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("message");
+
+        // asset manager
+        assetManager = getAssets();
+
+//        batas load assets
+        try {
+            // to reach asset
+            AssetManager assetManager = getAssets();
+            // to get all item in dogs folder.
+            String[] images = assetManager.list("body");
+            String[] images1 = assetManager.list("eye");
+            String[] images2 = assetManager.list("mouth");
+            String[] images3 = assetManager.list("nose");
+            String[] images4 = assetManager.list("cloth");
+            String[] images5 = assetManager.list("hair");
+            // to keep all image
+            Drawable[] drawables = new Drawable[images.length];
+            // the loop read all image in dogs folder and  aa
+            for (int i = 0; i < images.length; i++) {
+                inputStream = getAssets().open("body/" + images[i]);
+//                Drawable drawable = Drawable.createFromStream(inputStream, null);
+//                drawables[i] = drawable;
+//                Log.d(TAG, "gambar Ass: "+ drawable);
+                Log.d(TAG, "gambar Ass: "+ inputStream);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        batas load assets
+
 
         //memberi isi value pada database dengan nama field message
         myRef.setValue("Welcome");
