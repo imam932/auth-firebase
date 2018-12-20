@@ -17,8 +17,8 @@
 
         <FrameLayout
             android:id="@+id/flayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:background="@color/noColor"
             android:minHeight="10dp">
 
@@ -26,16 +26,23 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@android:drawable/screen_background_light_transparent"
+                app:srcCompat="@color/noColor"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/googleg_standard_color_18" />
+
         </FrameLayout>
 
         <GridLayout
             android:id="@+id/glayout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/holo_orange_light"
             android:minHeight="10dp"></GridLayout>
     </LinearLayout>
 

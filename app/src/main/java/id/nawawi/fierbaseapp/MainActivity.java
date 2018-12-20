@@ -65,18 +65,15 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = ((FloatingActionButton) findViewById(R.id.floatingActionButton));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("message");
-        //ButterKnife.bind(this);
+
         //memberi isi value pada database dengan nama field message
         myRef.setValue("Welcome");
         rl = (RelativeLayout) findViewById(R.id.rlayout);
         ll = (LinearLayout) findViewById(R.id.llayout);
         fl = (FrameLayout) findViewById(R.id.flayout);
         gl = (GridLayout) findViewById(R.id.glayout);
-        // fl.getLayoutParams().height = rl.getWidth();
-        //fl.getLayoutParams().width = fl.getHeight();
-        gl.getLayoutParams().height = (rl.getHeight()-fl.getHeight());
-        gl.getLayoutParams().width = fl.getWidth();
         iv = (ImageView)findViewById(R.id.imageView2);
+
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -186,17 +183,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == RESULT_OK) {
             Glide.with(MainActivity.this).
-                    load(new File(mFileURI.getPath())).
-                    asBitmap().
+                    load(new File(mFileURI.getPath())).asBitmap().
+                    override(800,800).centerCrop().
                     into(new SimpleTarget<Bitmap>(iv.getWidth(),iv.getWidth()
                     ) {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    Drawable drawable = new BitmapDrawable(resource);
-//                    if (Build.VERSION.SDK_INT >= 16) {
-//                        fl.setMinimumHeight(drawable.getMinimumHeight());
-//                        fl.setBackground(drawable);
-//                    }
+                    //Drawable drawable = new BitmapDrawable(resource);
                     iv.setImageBitmap(resource);
                 }
             });
@@ -236,11 +229,11 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
             ll.setOrientation(LinearLayout.HORIZONTAL);
-            gl.getLayoutParams().width = (rl.getWidth()-fl.getWidth());
+            //gl.getLayoutParams().width = (rl.getWidth()-fl.getWidth());
             Toast.makeText(this, "LANDSCAPE", Toast.LENGTH_SHORT).show();
         }else{
             ll.setOrientation(LinearLayout.VERTICAL);
-            gl.getLayoutParams().height = (rl.getHeight()-fl.getHeight());
+            //gl.getLayoutParams().height = (rl.getHeight()-fl.getHeight());
             Toast.makeText(this, "POTRAIT", Toast.LENGTH_SHORT).show();
         }
     }
