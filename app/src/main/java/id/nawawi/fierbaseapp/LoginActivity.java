@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(final String email, final String password){
-        final Intent intentM = new Intent(this, MainActivity.class);
+        final Intent intentM = new Intent(this, MainMenu.class);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        final Intent intentM = new Intent(this, MainActivity.class);
+        final Intent intentM = new Intent(this, MainMenu.class);
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
