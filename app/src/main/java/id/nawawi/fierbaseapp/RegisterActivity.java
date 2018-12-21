@@ -1,6 +1,5 @@
 package id.nawawi.fierbaseapp;
 
-import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
