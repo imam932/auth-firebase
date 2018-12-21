@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ImageAssets extends AppCompatActivity {
 
+// image array untuk body
     private static List<Integer> body = new ArrayList<Integer>(){{
         add(R.drawable.b11);
         add(R.drawable.b12);
@@ -16,6 +17,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
+    // image array untuk eye
     private static List<Integer> eye = new ArrayList<Integer>(){{
         add(R.drawable.e32);
         add(R.drawable.e33);
@@ -25,6 +27,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
+    // image array untuk blush
     private static List<Integer> blush = new ArrayList<Integer>(){{
         add(R.drawable.n211);
         add(R.drawable.n212);
@@ -32,6 +35,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
+    // image array untuk mouth
     private static List<Integer> mouth = new ArrayList<Integer>(){{
         add(R.drawable.m414);
         add(R.drawable.m416);
@@ -42,6 +46,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
+    // image array untuk hair
     private static List<Integer> hair = new ArrayList<Integer>(){{
         add(R.drawable.h11);
         add(R.drawable.h12);
@@ -51,6 +56,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
+    // image array untuk cloth
     private static List<Integer> cloth = new ArrayList<Integer>(){{
         add(R.drawable.c10);
         add(R.drawable.c12);
@@ -60,6 +66,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
+//    method return array list
     public static List<Integer> getBody() {
         return body;
     }

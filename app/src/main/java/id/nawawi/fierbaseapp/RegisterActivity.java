@@ -62,19 +62,19 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(RegisterActivity.this, "Authentication success.",
+                            Toast.makeText(RegisterActivity.this, "Register success.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.d(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                            Toast.makeText(RegisterActivity.this, "Register failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
 
-                        // ...
                     }
                 });
     }

@@ -43,65 +43,9 @@ public class BodyPartFragment extends Fragment {
         //menampilkan gambar res ke imageview
         iv.setImageResource(mImageIds.get(mListIndex));
 
-        //mengganti gambar saat klik
-        iv.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                //kondisi mengubah id image dengan menambah index saat di klik dan mengembalikan ke 0 saat mencapai index akhir list
-                /*if (mListIndex < mImageIds.size()-1) {
-                    mListIndex++;
-                }
-                else {
-                    mListIndex = 0;
-                }
-                iv.setImageResource(mImageIds.get(mListIndex));*/
-            }
-        });
 
-        iv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getActionMasked()){
-                    case MotionEvent.ACTION_DOWN:
-                        x=event.getX();
-                        mListIndex0 = mListIndex;
-                    case MotionEvent.ACTION_MOVE:
-                        if (x > event.getX()+0.9) {
-                            //kondisi mengubah id image dengan menambah index saat swipe kiri
-                            if (mListIndex < mImageIds.size()-1) {
-                                if (mListIndex0 == mListIndex)
-                                    mListIndex++;
-                            }
-                            else {
-                                mListIndex = 0;
-                            }
-                            iv.setImageResource(mImageIds.get(mListIndex));
-                            return true;
-                        }
-                        else if (x < event.getX()-0.9) {
-                            //kondisi mengubah id image dengan mengurangi index saat swipe kanaki
-                            if (mListIndex > 0) {
-                                if (mListIndex0 == mListIndex)
-                                    mListIndex--;
-                            }
-                            else {
-                                mListIndex = mImageIds.size()-1;
-                            }
-                            iv.setImageResource(mImageIds.get(mListIndex));
-                            return true;
-                        }
-                    default:
-                        return false;
-                }
-            }
-
-        });
         return rootView;
-    }
-
-    public static void changePart(int index) {
-        //iv.setImageResource(mImageIds.get(mListIndex));
     }
 
     //menyimpan variabel array & index

@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            //membuat & mengambil fragment leg
+            //membuat & mengambil fragment blush
             fragmentBlush = new BodyPartFragment();
             fragmentBlush.setmImageIds(ImageAssets.getBlush());
             fragmentBlush.setmListIndex(0);
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            //membuat & mengambil fragment leg
+            //membuat & mengambil fragment mouth
             fragmentMouth = new BodyPartFragment();
             fragmentMouth.setmImageIds(ImageAssets.getMouth());
             fragmentMouth.setmListIndex(0);
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            //membuat & mengambil fragment leg
+            //membuat & mengambil fragment hair
             fragmentHair = new BodyPartFragment();
             fragmentHair.setmImageIds(ImageAssets.getHair());
             fragmentHair.setmListIndex(0);
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            //membuat & mengambil fragment leg
+            //membuat & mengambil fragment cloth
             fragmentCloth = new BodyPartFragment();
             fragmentCloth.setmImageIds(ImageAssets.getCloth());
             fragmentCloth.setmListIndex(0);
@@ -263,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
             mSaveURI = getMediaFileName("AvaGen");
             try {
                 b.compress(Bitmap.CompressFormat.PNG,100,new FileOutputStream(new File(mSaveURI.getAbsolutePath())));
+                Toast.makeText(this, "Image Saved", Toast.LENGTH_SHORT).show();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -357,12 +358,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+//      berubah ke lanscape
         if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
             ll.setOrientation(LinearLayout.HORIZONTAL);
             fl.getLayoutParams().width=fl.getLayoutParams().height;
             fl.getLayoutParams().height=rl.getLayoutParams().width;
             //Toast.makeText(this, "LANDSCAPE", Toast.LENGTH_SHORT).show();
         }else{
+//      berubah ke potrait
             ll.setOrientation(LinearLayout.VERTICAL);
             fl.getLayoutParams().height=fl.getLayoutParams().width;
             fl.getLayoutParams().width=rl.getLayoutParams().width;

@@ -19,9 +19,8 @@
         android:id="@+id/glhair"
         android:layout_width="fill_parent"
         android:layout_height="320dp"
-        android:numColumns="3"
-        android:background="@android:color/holo_orange_light"
-        ></GridView>
+        android:background="@android:color/white"
+        android:numColumns="3"></GridView>
 
     <TextView
         android:layout_width="match_parent"
@@ -33,9 +32,8 @@
         android:id="@+id/gleye"
         android:layout_width="fill_parent"
         android:layout_height="320dp"
-        android:numColumns="3"
-        android:background="@android:color/holo_orange_light"
-        ></GridView>
+        android:background="@android:color/white"
+        android:numColumns="3"></GridView>
 
     <TextView
         android:layout_width="match_parent"
@@ -47,9 +45,8 @@
         android:id="@+id/glblush"
         android:layout_width="fill_parent"
         android:layout_height="320dp"
-        android:numColumns="3"
-        android:background="@android:color/holo_orange_light"
-        ></GridView>
+        android:background="@android:color/white"
+        android:numColumns="3"></GridView>
 
     <TextView
         android:layout_width="match_parent"
@@ -61,9 +58,8 @@
         android:id="@+id/glmouth"
         android:layout_width="fill_parent"
         android:layout_height="320dp"
-        android:numColumns="3"
-        android:background="@android:color/holo_orange_light"
-        ></GridView>
+        android:background="@android:color/white"
+        android:numColumns="3"></GridView>
 
     <TextView
         android:layout_width="match_parent"
@@ -75,9 +71,8 @@
         android:id="@+id/glbody"
         android:layout_width="fill_parent"
         android:layout_height="320dp"
-        android:numColumns="3"
-        android:background="@android:color/holo_orange_light"
-        ></GridView>
+        android:background="@android:color/white"
+        android:numColumns="3"></GridView>
 
     <TextView
         android:layout_width="match_parent"
@@ -89,8 +84,7 @@
         android:id="@+id/glcloth"
         android:layout_width="fill_parent"
         android:layout_height="320dp"
-        android:numColumns="3"
-        android:background="@android:color/holo_orange_light"
-        ></GridView>
+        android:background="@android:color/white"
+        android:numColumns="3"></GridView>
 
 </LinearLayout>

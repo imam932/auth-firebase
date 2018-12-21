@@ -8,12 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 public class GridAdapter extends BaseAdapter {
+//    declare
     Context context;
     int image[];
     LayoutInflater inflter;
+
     public GridAdapter(Context applicationContext, int[] images) {
         this.context = applicationContext;
         this.image = images;
+//        inflate layout
         inflter = (LayoutInflater.from(applicationContext));
     }
     @Override
@@ -30,7 +33,7 @@ public class GridAdapter extends BaseAdapter {
     }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.grid_view_items, viewGroup, false); // inflate the layout
+        view = inflter.inflate(R.layout.grid_view_items, viewGroup, false); // inflate view
         ImageView ivs = (ImageView) view.findViewById(R.id.imageView); // get the reference of ImageView
         ivs.setImageResource(image[i]); // set logo images
         return view;

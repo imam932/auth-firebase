@@ -33,27 +33,38 @@
             <FrameLayout
                 android:id="@+id/body_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"></FrameLayout>
+
             <FrameLayout
                 android:id="@+id/eye_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"></FrameLayout>
+
             <FrameLayout
                 android:id="@+id/blush_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"></FrameLayout>
+
             <FrameLayout
                 android:id="@+id/mouth_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"></FrameLayout>
+
             <FrameLayout
                 android:id="@+id/hair_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"></FrameLayout>
+
             <FrameLayout
                 android:id="@+id/cloth_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"></FrameLayout>
 
         </FrameLayout>
 

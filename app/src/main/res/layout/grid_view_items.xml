@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/grid_view_items"
     android:layout_width="match_parent"
@@ -12,10 +13,10 @@
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
         android:padding="1dp"
         android:scaleType="centerCrop"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/icon"
-        android:adjustViewBounds="true" />
+        app:srcCompat="@drawable/icon" />
 
 </LinearLayout>
