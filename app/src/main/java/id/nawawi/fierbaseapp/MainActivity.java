@@ -41,6 +41,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import android.provider.MediaStore;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_STORAGE = 1;
     private static final int REQUEST_CAMERA = 2;
     private static final String FILE_PROVIDER_AUTHORITY = "id.nawawi.fileprovider";
-    private File mFileURI;
+    private File mFileURI,mSaveURI;
     private AssetManager assetManager;
     private InputStream inputStream;
     private FrameLayout fl;
@@ -111,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final CharSequence[] dialogitem = {
                         "Take Background Photo",
-                        "Remove Background"
+                        "Remove Background",
+                        "Screen Capture"
                 };
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Pilihan");
@@ -124,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
                             case 1:
                                 iv.setImageDrawable(dd);
                                 break;
+                            case 2:
+                                askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,5);
                         }
                     }
 
@@ -219,9 +224,22 @@ public class MainActivity extends AppCompatActivity {
         else if (reqCode == REQUEST_CAMERA) {
             askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,REQUEST_STORAGE);
         }
+        else if (reqCode == 5) {
+            View view1 = fl;
+            view1.setDrawingCacheEnabled(true);
+            view1.buildDrawingCache();
+            final Bitmap b = view1.getDrawingCache();
+            mSaveURI = getMediaFileName("AvaGen");
+            try {
+                b.compress(Bitmap.CompressFormat.PNG,100,new FileOutputStream(new File(mSaveURI.getAbsolutePath())));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
         else {
             captureImage();
         }
+
     }
 
     @Override
@@ -254,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
     private void captureImage() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            mFileURI = getMediaFileName();
+            mFileURI = getMediaFileName("AvaCamera");
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getApplicationContext(),FILE_PROVIDER_AUTHORITY,mFileURI));
             startActivityForResult(takePictureIntent, 100);
         }
@@ -278,20 +296,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static File getMediaFileName() {
+    private static File getMediaFileName(String folder) {
         // Lokasi External sdcard
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "CameraDemo");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), folder);
         // Buat directori tidak direktori tidak eksis
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d("CameraDemo", "Gagal membuat directory" + "CameraDemo");
                 return null;
             }
         }
         // Membuat nama file
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",  Locale.getDefault()).format(new Date());
         File mediaFile = null;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".png");
         return mediaFile;
     }
 
