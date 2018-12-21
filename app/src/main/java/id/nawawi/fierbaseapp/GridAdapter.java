@@ -19,18 +19,23 @@ public class GridAdapter extends BaseAdapter {
 //        inflate layout
         inflter = (LayoutInflater.from(applicationContext));
     }
+
     @Override
     public int getCount() {
         return image.length;
     }
+
     @Override
     public Object getItem(int i) {
         return null;
     }
+
     @Override
     public long getItemId(int i) {
         return 0;
     }
+
+    //mengambil view
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.grid_view_items, viewGroup, false); // inflate view

@@ -18,6 +18,7 @@ public class MainMenu extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //tombol mulai ke main activity
         Button createButton = (Button)findViewById(R.id.button);
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override

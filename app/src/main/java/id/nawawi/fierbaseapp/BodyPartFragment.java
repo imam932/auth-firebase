@@ -55,15 +55,17 @@ public class BodyPartFragment extends Fragment {
         currentState.putInt(LIST_INDEX, mListIndex);
     }
 
-    //setter indeks
+    //setter list id gambar
     public void setmImageIds(List<Integer> mImageIds) {
         this.mImageIds = mImageIds;
     }
 
+    //setter indeks
     public void setmListIndex(Integer mListIndex) {
         this.mListIndex = mListIndex;
     }
 
+    //mengganti indeks dan gambar
     public void setmListIndexChange(Integer mListIndex) {
         this.mListIndex = mListIndex;
         iv.setImageResource(mImageIds.get(mListIndex));

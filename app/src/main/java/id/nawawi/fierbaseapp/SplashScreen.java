@@ -19,25 +19,30 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        //sembunyikan ar
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         ImageView iv = ((ImageView)findViewById(R.id.imageView));
         TextView tv = ((TextView)findViewById(R.id.textView));
+        //pengaturan animasi
         anim1 = ObjectAnimator.ofFloat(iv,"alpha",0f,1f).setDuration(2000);
         anim2 = ObjectAnimator.ofFloat(tv,"alpha",0f,1f).setDuration(2000);
         AnimatorSet as = new AnimatorSet();
         as.play(anim1).with(anim2);
+        //Adapter animasi
         as.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 final Intent intentL = new Intent(SplashScreen.this, LoginActivity.class);
+                //timer
                 new CountDownTimer(3000,1000) {
                     @Override
                     public void onTick(long l) {
 
                     }
                     public void onFinish() {
+                        //intent
                         startActivity(intentL);
                         finish();
                     }
