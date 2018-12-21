@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:scaleType="fitXY"
         android:adjustViewBounds="true"
+        android:scaleType="center"
         android:src="@drawable/icon"
         tools:srcCompat="@drawable/icon" />
 

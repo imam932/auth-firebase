@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout ll;
     private ImageView iv;
     private Drawable dd;
+    BodyPartFragment fragmentBody, fragmentEye, fragmentBlush, fragmentMouth, fragmentHair, fragmentCloth, fragmentPart;
 
 
     @Override
@@ -137,13 +138,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Camera di device anda tidak tersedia", Toast.LENGTH_LONG).show();
             finish();
         }
-        instanceState(savedInstanceState);
+
         gvbody.setAdapter(new GridAdapter(getApplicationContext(),intListtoArray(ImageAssets.getBody())));
         gveye.setAdapter(new GridAdapter(getApplicationContext(),intListtoArray(ImageAssets.getEye())));
         gvblush.setAdapter(new GridAdapter(getApplicationContext(),intListtoArray(ImageAssets.getBlush())));
         gvmouth.setAdapter(new GridAdapter(getApplicationContext(),intListtoArray(ImageAssets.getMouth())));
         gvhair.setAdapter(new GridAdapter(getApplicationContext(),intListtoArray(ImageAssets.getHair())));
         gvcloth.setAdapter(new GridAdapter(getApplicationContext(),intListtoArray(ImageAssets.getCloth())));
+        instanceState(savedInstanceState);
     }
 
     private int[] intListtoArray (List<Integer> myList) {
@@ -159,50 +161,83 @@ public class MainActivity extends AppCompatActivity {
             //inisiasi adapter untuk mengaktifkan fragment
             FragmentManager fragmentManager = getSupportFragmentManager();
 
-            //inisiasi object fragment
-            BodyPartFragment fragmentPart;
-
             //membuat & mengambil fragment body
-            fragmentPart = new BodyPartFragment();
-            fragmentPart.setmImageIds(ImageAssets.getBody());
-            fragmentPart.setmListIndex(0);
+            fragmentBody = new BodyPartFragment();
+            fragmentBody.setmImageIds(ImageAssets.getBody());
+            fragmentBody.setmListIndex(0);
             //transaksi fragment body
-            fragmentManager.beginTransaction().add(R.id.body_container, fragmentPart).commit();
+            fragmentManager.beginTransaction().add(R.id.body_container, fragmentBody).commit();
+            gvbody.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    fragmentBody.setmListIndexChange(i);
+                }
+            });
 
             //membuat & mengambil fragment leg
-            fragmentPart = new BodyPartFragment();
-            fragmentPart.setmImageIds(ImageAssets.getEye());
-            fragmentPart.setmListIndex(0);
+            fragmentEye = new BodyPartFragment();
+            fragmentEye.setmImageIds(ImageAssets.getEye());
+            fragmentEye.setmListIndex(0);
             //transaksi fragment leg
-            fragmentManager.beginTransaction().add(R.id.eye_container, fragmentPart).commit();
+            fragmentManager.beginTransaction().add(R.id.eye_container, fragmentEye).commit();
+            gveye.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    fragmentEye.setmListIndexChange(i);
+                }
+            });
 
             //membuat & mengambil fragment leg
-            fragmentPart = new BodyPartFragment();
-            fragmentPart.setmImageIds(ImageAssets.getBlush());
-            fragmentPart.setmListIndex(0);
+            fragmentBlush = new BodyPartFragment();
+            fragmentBlush.setmImageIds(ImageAssets.getBlush());
+            fragmentBlush.setmListIndex(0);
             //transaksi fragment leg
-            fragmentManager.beginTransaction().add(R.id.blush_container, fragmentPart).commit();
+            fragmentManager.beginTransaction().add(R.id.blush_container, fragmentBlush).commit();
+            gvblush.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    fragmentBlush.setmListIndexChange(i);
+                }
+            });
 
             //membuat & mengambil fragment leg
-            fragmentPart = new BodyPartFragment();
-            fragmentPart.setmImageIds(ImageAssets.getMouth());
-            fragmentPart.setmListIndex(0);
+            fragmentMouth = new BodyPartFragment();
+            fragmentMouth.setmImageIds(ImageAssets.getMouth());
+            fragmentMouth.setmListIndex(0);
             //transaksi fragment leg
-            fragmentManager.beginTransaction().add(R.id.mouth_container, fragmentPart).commit();
+            fragmentManager.beginTransaction().add(R.id.mouth_container, fragmentMouth).commit();
+            gvmouth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    fragmentMouth.setmListIndexChange(i);
+                }
+            });
 
             //membuat & mengambil fragment leg
-            fragmentPart = new BodyPartFragment();
-            fragmentPart.setmImageIds(ImageAssets.getHair());
-            fragmentPart.setmListIndex(0);
+            fragmentHair = new BodyPartFragment();
+            fragmentHair.setmImageIds(ImageAssets.getHair());
+            fragmentHair.setmListIndex(0);
             //transaksi fragment leg
-            fragmentManager.beginTransaction().add(R.id.hair_container, fragmentPart).commit();
+            fragmentManager.beginTransaction().add(R.id.hair_container, fragmentHair).commit();
+            gvhair.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    fragmentHair.setmListIndexChange(i);
+                }
+            });
 
             //membuat & mengambil fragment leg
-            fragmentPart = new BodyPartFragment();
-            fragmentPart.setmImageIds(ImageAssets.getCloth());
-            fragmentPart.setmListIndex(0);
+            fragmentCloth = new BodyPartFragment();
+            fragmentCloth.setmImageIds(ImageAssets.getCloth());
+            fragmentCloth.setmListIndex(0);
             //transaksi fragment leg
-            fragmentManager.beginTransaction().add(R.id.cloth_container, fragmentPart).commit();
+            fragmentManager.beginTransaction().add(R.id.cloth_container, fragmentCloth).commit();
+            gvcloth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    fragmentCloth.setmListIndexChange(i);
+                }
+            });
         }
     }
 

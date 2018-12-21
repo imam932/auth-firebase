@@ -30,7 +30,7 @@ public class GridAdapter extends BaseAdapter {
     }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.grid_view_items, null); // inflate the layout
+        view = inflter.inflate(R.layout.grid_view_items, viewGroup, false); // inflate the layout
         ImageView ivs = (ImageView) view.findViewById(R.id.imageView); // get the reference of ImageView
         ivs.setImageResource(image[i]); // set logo images
         return view;

@@ -119,4 +119,9 @@ public class BodyPartFragment extends Fragment {
     public void setmListIndex(Integer mListIndex) {
         this.mListIndex = mListIndex;
     }
+
+    public void setmListIndexChange(Integer mListIndex) {
+        this.mListIndex = mListIndex;
+        iv.setImageResource(mImageIds.get(mListIndex));
+    }
 }

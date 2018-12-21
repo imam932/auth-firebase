@@ -33,11 +33,12 @@ public class ImageAssets extends AppCompatActivity {
     }};
 
     private static List<Integer> mouth = new ArrayList<Integer>(){{
+        add(R.drawable.m414);
         add(R.drawable.m416);
+        add(R.drawable.m424);
         add(R.drawable.m427);
         add(R.drawable.m428);
         add(R.drawable.m430);
-        add(R.drawable.m431);
 
     }};
 
