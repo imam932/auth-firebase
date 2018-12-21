@@ -16,8 +16,6 @@
         android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/icon"
-        android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:adjustViewBounds="true" />
 
 </LinearLayout>
