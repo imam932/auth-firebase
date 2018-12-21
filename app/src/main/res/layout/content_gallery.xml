@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hair"
+        android:textSize="16sp"/>
+
+    <GridView
+        android:id="@+id/glhair"
+        android:layout_width="fill_parent"
+        android:layout_height="320dp"
+        android:numColumns="3"
+        android:background="@android:color/holo_orange_light"
+        ></GridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eye"
+        android:textSize="16sp"/>
+
+    <GridView
+        android:id="@+id/gleye"
+        android:layout_width="fill_parent"
+        android:layout_height="320dp"
+        android:numColumns="3"
+        android:background="@android:color/holo_orange_light"
+        ></GridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blush"
+        android:textSize="16sp"/>
+
+    <GridView
+        android:id="@+id/glblush"
+        android:layout_width="fill_parent"
+        android:layout_height="320dp"
+        android:numColumns="3"
+        android:background="@android:color/holo_orange_light"
+        ></GridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mouth"
+        android:textSize="16sp"/>
+
+    <GridView
+        android:id="@+id/glmouth"
+        android:layout_width="fill_parent"
+        android:layout_height="320dp"
+        android:numColumns="3"
+        android:background="@android:color/holo_orange_light"
+        ></GridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Body"
+        android:textSize="16sp"/>
+
+    <GridView
+        android:id="@+id/glbody"
+        android:layout_width="fill_parent"
+        android:layout_height="320dp"
+        android:numColumns="3"
+        android:background="@android:color/holo_orange_light"
+        ></GridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cloth"
+        android:textSize="16sp"/>
+
+    <GridView
+        android:id="@+id/glcloth"
+        android:layout_width="fill_parent"
+        android:layout_height="320dp"
+        android:numColumns="3"
+        android:background="@android:color/holo_orange_light"
+        ></GridView>
+
+</LinearLayout>

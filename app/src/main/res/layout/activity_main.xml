@@ -30,11 +30,30 @@
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"/>
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <FrameLayout
+                android:id="@+id/body_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/googleg_standard_color_18" />
+                android:layout_height="match_parent"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/eye_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/blush_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/mouth_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/hair_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/cloth_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
 
         </FrameLayout>
 
@@ -46,28 +65,10 @@
             <ScrollView
                 android:id="@+id/scrlViewGallery"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Eye"
-                        android:textSize="16sp"/>
-
-                    <GridLayout
-                        android:id="@+id/glayout"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:columnCount="3"
-                        android:background="@android:color/holo_orange_light"
-                        android:minHeight="10dp"></GridLayout>
-
-                </LinearLayout>
+                <include layout="@layout/content_gallery" />
 
             </ScrollView>
         </LinearLayout>
