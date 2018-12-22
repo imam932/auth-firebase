@@ -1,6 +1,5 @@
 package id.nawawi.fierbaseapp;
 
-import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser) {
     }
 
+    //function register
     private void register(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -63,19 +63,20 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(RegisterActivity.this, "Authentication success.",
+
+                            Toast.makeText(RegisterActivity.this, "Register success.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.d(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                            Toast.makeText(RegisterActivity.this, "Register failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
 
-                        // ...
                     }
                 });
     }
