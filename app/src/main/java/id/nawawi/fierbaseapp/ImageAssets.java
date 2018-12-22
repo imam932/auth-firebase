@@ -66,7 +66,7 @@ public class ImageAssets extends AppCompatActivity {
 
     }};
 
-//    method return array list
+//    method return list
     public static List<Integer> getBody() {
         return body;
     }
