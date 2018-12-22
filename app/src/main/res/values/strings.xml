@@ -1,9 +1,5 @@
 <resources>
-<<<<<<< HEAD
-    <string name="app_name">FierbaseApp</string>
-    <string name="Login">Login</string>
-    <string name="Register">Register</string>
-=======
+
     <string name="app_name">AvaGenApps</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
@@ -17,5 +13,4 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main_menu">Main Menu</string>
->>>>>>> abcfd7d85661421c605a34a1a68e6eea9cc58888
 </resources>
